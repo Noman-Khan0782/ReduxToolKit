@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import { useDispatch,useSelector } from 'react-redux';
+import { increment,decrement,incrementByAmount } from './features/counter/counterSlice';
+// import counter from '../src/App/store'
 
 function App() {
+  const count = useSelector((state) => state.counter.value)
+  const dispatch = useDispatch()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+   <>
+<div className=' flex space-x-3 justify-center items-center h-screen'>
+      <div className="">
+        {/* Read  */}
+        <p className=' text-6xl font-bold text-center mb-5 text-white'>{count}</p>
+        {/* Increment Button  */}
+        <button
+          className=' bg-red-600 text-white py-2.5 rounded-md px-5 font-bold'
+          onClick={()=> dispatch(increment())}
         >
-          Learn React
-        </a>
-      </header>
+        </button>
+        {/* Decrement Button  */}
+        <button
+          className=' ml-20 bg-green-600 text-white py-2.5 rounded-md px-5 font-bold'
+          onClick={()=> dispatch(decrement())}
+        >
+        </button>
+        {/* Increment By User */}
+        <button
+          className=' ml-20 bg-orange-600 text-white py-2.5 rounded-md px-5 font-bold'
+        onClick={()=>dispatch(incrementByAmount())}
+        >
+        </button>
+      </div>
     </div>
+   </>
   );
 }
 
